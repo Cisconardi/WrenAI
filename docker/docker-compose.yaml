@@ -27,7 +27,7 @@ services:
       - ${WREN_ENGINE_SQL_PORT}
     volumes:
       - data:/usr/src/app/etc
-      - ../data:/usr/src/app/data # <-- Percorso corretto
+      - ./data:/usr/src/app/data  # <-- Percorso corretto
     networks:
       - wren
     depends_on:
@@ -58,12 +58,10 @@ services:
       PYTHONUNBUFFERED: 1
       CONFIG_PATH: /app/config.yaml
     env_file:
-      - ../.env
+      - ./.env  # <-- Percorso corretto
     volumes:
-      # --- QUESTE RIGHE SONO FONDAMENTALI ---
-      - ../config.yaml:/app/config.yaml:ro
-      - ../data:/app/data:ro
-      # -----------------------------------
+      - ./config.yaml:/app/config.yaml:ro  # <-- Percorso corretto
+      - ./data:/app/data:ro              # <-- Percorso corretto
     networks:
       - wren
     depends_on:
@@ -91,7 +89,6 @@ services:
       WREN_ENGINE_ENDPOINT: http://wren-engine:${WREN_ENGINE_PORT}
       WREN_AI_ENDPOINT: http://wren-ai-service:${WREN_AI_SERVICE_PORT}
       IBIS_SERVER_ENDPOINT: http://ibis-server:${IBIS_SERVER_PORT}
-      # ... (tutte le altre env vars)
       GENERATION_MODEL: ${GENERATION_MODEL}
       WREN_ENGINE_PORT: ${WREN_ENGINE_PORT}
       WREN_AI_SERVICE_VERSION: ${WREN_AI_SERVICE_VERSION}
