@@ -1,0 +1,15 @@
+llm:
+  provider: openai
+  config:
+    model: gpt-4o-mini # O il modello che hai nelle env var
+
+pipeline:
+  - name: db_schema_retrieval
+    provider: default
+    config:
+      llm:
+        provider: openai
+        config:
+          model: gpt-3.5-turbo # Va bene questo modello per lo schema
+
+  # (Il resto del file può rimanere commentato per ora)
