@@ -62,8 +62,7 @@ services:
     env_file:
       - ../.env
     volumes:
-      - ../config.yaml:/app/config.yaml:ro
-      - ../data:/app/data:ro
+    - data:/app/data
     networks:
       - wren
     depends_on:
