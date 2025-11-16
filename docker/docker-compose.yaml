@@ -27,7 +27,7 @@ services:
       - ${WREN_ENGINE_SQL_PORT}
     volumes:
       - data:/usr/src/app/etc
-      - ${PROJECT_DIR}/data:/usr/src/app/data
+      - ../data:/usr/src/app/data
     networks:
       - wren
     depends_on:
@@ -60,10 +60,10 @@ services:
       PYTHONUNBUFFERED: 1
       CONFIG_PATH: /app/config.yaml
     env_file:
-      - ${PROJECT_DIR}/.env
+      - ../.env
     volumes:
-      - ${PROJECT_DIR}/config.yaml:/app/config.yaml:ro
-      - ${PROJECT_DIR}/data:/app/data:ro
+      - ../config.yaml:/app/config.yaml:ro
+      - ../data:/app/data:ro
     networks:
       - wren
     depends_on:
