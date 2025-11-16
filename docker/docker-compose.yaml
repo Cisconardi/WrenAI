@@ -27,7 +27,7 @@ services:
       - ${WREN_ENGINE_SQL_PORT}
     volumes:
       - data:/usr/src/app/etc
-      - ./data:/usr/src/app/data  # <-- Percorso corretto
+      - ./data:/usr/src/app/data  # <-- CORRETTO
     networks:
       - wren
     depends_on:
@@ -58,10 +58,10 @@ services:
       PYTHONUNBUFFERED: 1
       CONFIG_PATH: /app/config.yaml
     env_file:
-      - ./.env  # <-- Percorso corretto
+      - ./.env  # <-- CORRETTO
     volumes:
-      - ./config.yaml:/app/config.yaml:ro  # <-- Percorso corretto
-      - ./data:/app/data:ro              # <-- Percorso corretto
+      - ./config.yaml:/app/config.yaml:ro  # <-- CORRETTO
+      - ./data:/app/data:ro              # <-- CORRETTO
     networks:
       - wren
     depends_on:
@@ -80,7 +80,7 @@ services:
 
   wren-ui:
     image: ghcr.io/canner/wren-ui:${WREN_UI_VERSION}
-    user: "0:0"  # <-- Corretto!
+    user: "0:0"  # <-- Correzione permessi
     restart: on-failure
     platform: ${PLATFORM}
     environment:
@@ -107,7 +107,7 @@ services:
     ports:
       - ${HOST_PORT}:3000
     volumes:
-      - data:/app/data  # <-- Corretto!
+      - data:/app/data  # <-- Correzione volume
     networks:
       - wren
     depends_on:
