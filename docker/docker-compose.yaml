@@ -82,6 +82,7 @@ services:
 
   wren-ui:
     image: ghcr.io/canner/wren-ui:${WREN_UI_VERSION}
+    user: "0:0"  # <-- Permessi per fare caricare a tutti i files
     restart: on-failure
     platform: ${PLATFORM}
     environment:
