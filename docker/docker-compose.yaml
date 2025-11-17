@@ -27,7 +27,7 @@ services:
       - ${WREN_ENGINE_SQL_PORT}
     volumes:
       - data:/usr/src/app/etc
-      - ./data:/usr/src/app/data  # <-- Percorso corretto
+      - ./data:/usr/src/app/data  # <-- CORRETTO
     networks:
       - wren
     depends_on:
@@ -57,14 +57,14 @@ services:
     environment:
       PYTHONUNBUFFERED: 1
       CONFIG_PATH: /app/config.yaml
-    # 'env_file' rimosso perché le variabili sono già in Coolify
+    # 'env_file' rimosso
     volumes:
-      - ./config.yaml:/app/config.yaml:ro  # <-- Percorso corretto
-      - ./data:/app/data:ro              # <-- Percorso corretto
+      - ./config.yaml:/app/config.yaml:ro  # <-- CORRETTO
+      - ./data:/app/data:ro              # <-- CORRETTO
     networks:
       - wren
     depends_on:
-      - qdrant
+      - qdran
 
   qdrant:
     image: qdrant/qdrant:v1.11.0
