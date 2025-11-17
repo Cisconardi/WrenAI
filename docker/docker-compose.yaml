@@ -64,7 +64,7 @@ services:
     networks:
       - wren
     depends_on:
-      - qdran
+      - qdrant
 
   qdrant:
     image: qdrant/qdrant:v1.11.0
