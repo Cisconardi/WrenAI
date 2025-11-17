@@ -1,15 +1,18 @@
 llm:
   provider: openai
   config:
-    model: gpt-4o-mini # O il modello che hai nelle env var
+    # Modello principale per la generazione di risposte, SQL, ecc.
+    model: gpt-4o 
 
 pipeline:
+  # Questa pipeline è cruciale. Analizza il tuo database.
   - name: db_schema_retrieval
     provider: default
     config:
       llm:
         provider: openai
         config:
-          model: gpt-3.5-turbo # Va bene questo modello per lo schema
-
+          # Usiamo un modello potente anche qui per capire meglio lo schema.
+          model: gpt-4o 
+          
   # (Il resto del file può rimanere commentato per ora)
