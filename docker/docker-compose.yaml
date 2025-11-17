@@ -27,7 +27,7 @@ services:
       - ${WREN_ENGINE_SQL_PORT}
     volumes:
       - data:/usr/src/app/etc
-      - ./data:/usr/src/app/data  # <-- CORRETTO
+      - ../data:/usr/src/app/data  # <-- CORRETTO
     networks:
       - wren
     depends_on:
@@ -59,12 +59,12 @@ services:
       CONFIG_PATH: /app/config.yaml
     # 'env_file' rimosso
     volumes:
-      - ./config.yaml:/app/config.yaml:ro  # <-- CORRETTO
-      - ./data:/app/data:ro              # <-- CORRETTO
+      - ../config.yaml:/app/config.yaml:ro  # <-- CORRETTO
+      - ../data:/app/data:ro              # <-- CORRETTO
     networks:
       - wren
     depends_on:
-      - qdrant
+      - qdrant # <-- Corretto
 
   qdrant:
     image: qdrant/qdrant:v1.11.0
@@ -79,7 +79,7 @@ services:
 
   wren-ui:
     image: ghcr.io/canner/wren-ui:${WREN_UI_VERSION}
-    user: "0:0"  # <-- Correzione permessi
+    user: "0:0"  # <-- Corretto
     restart: on-failure
     platform: ${PLATFORM}
     environment:
@@ -106,7 +106,7 @@ services:
     ports:
       - ${HOST_PORT}:3000
     volumes:
-      - data:/app/data  # <-- Correzione volume
+      - data:/app/data  # <-- Corretto
     networks:
       - wren
     depends_on:
